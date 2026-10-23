@@ -140,6 +140,19 @@ Most frameworks can wrap the CLI as a tool like this:
 
 It runs as `aero-pos <command> <target> [--chains <chains>] --compact`.
 
+### Hermes Agent
+
+[`hermes/aero-positions/SKILL.md`](hermes/aero-positions/SKILL.md) is a ready-made skill for [Hermes Agent](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills). It tells the agent when to call `aero-pos` through its terminal tool, and how to read the JSON. Install it into your Hermes skills folder:
+
+```bash
+mkdir -p ~/.hermes/skills && cp -R hermes/aero-positions ~/.hermes/skills/
+```
+
+In Hermes, `/skills` should list `aero-positions`, and `/aero-positions` invokes it directly.
+
+- The skill calls `~/.cargo/bin/aero-pos`, so install the binary first (`cargo install --path .`). If Hermes runs its terminal in Docker or on another machine, install the binary there too.
+- For Alchemy, set `ALCHEMY_API_KEY` in the environment Hermes's terminal runs in. Without it, the free public RPCs are used.
+
 ## Library
 
 ```rust
